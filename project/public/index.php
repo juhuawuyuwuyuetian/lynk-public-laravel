@@ -7,12 +7,14 @@
  * @author   Taylor Otwell <taylorotwell@gmail.com>
  */
 
-//这句必须加，否则报错的
-define('APPLICATION_WEB_ROOT',__DIR__."/../");
-
 $uri = urldecode(
     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
 );
+
+//这两句必须加，否则报错的
+define('APPLICATION_WEB_ROOT',__DIR__."/../");
+define('LARAVEL_FRAMEWORK_DIR',APPLICATION_WEB_ROOT.'/../framework/laravel5.3');
+require __DIR__.'/../vendor/autoload.php';
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -25,8 +27,7 @@ $uri = urldecode(
 |
 */
 
-require __DIR__.'/../vendor/autoload.php';
-require APPLICATION_WEB_ROOT.'/../framework/laravel5.3/bootstrap/autoload.php';
+require LARAVEL_FRAMEWORK_DIR.'/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,7 @@ require APPLICATION_WEB_ROOT.'/../framework/laravel5.3/bootstrap/autoload.php';
 |
 */
 
-$app = require_once APPLICATION_WEB_ROOT.'/../framework/laravel5.3/bootstrap/app.php';
+$app = require_once LARAVEL_FRAMEWORK_DIR.'/bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
